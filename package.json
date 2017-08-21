@@ -1,0 +1,34 @@
+{
+  "name": "eventline-messenger-bot",
+  "version": "0.0.1",
+  "description": "This example project creates a Facebook Messenger bot using Eventline",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/surebot/eventline-messenger-bot.git"
+  },
+  "keywords": [
+    "chatbot",
+    "eventline",
+    "messenger",
+    "facebook",
+    "bot",
+    "quickstart"
+  ],
+  "author": "Sebastian Krumhausen <sebastian@surebot.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/surebot/eventline-messenger-bot/issues"
+  },
+  "homepage": "https://github.com/surebot/eventline-messenger-bot#readme",
+  "dependencies": {
+    "body-parser": "*",
+    "eventline": "^0.2.6",
+    "express": "*",
+    "request": "^2.72.0"
+  }
+}
