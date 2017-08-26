@@ -19,13 +19,13 @@ const app = express();
 
 
 /* ----------  Parsers  ---------- */
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 // app.use(cookieParser());
 
  /* ----------  Loggers &c  ---------- */
 
-// app.use(logger('dev'));
+app.use(logger('dev'));
 
 /* =============================================
    =                   Routes                  =

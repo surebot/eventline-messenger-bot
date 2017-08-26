@@ -60,7 +60,7 @@ router.post('/', (req, res) => {
       data.entry.forEach((pageEntry) => {
         // Iterate over each messaging event and handle accordingly
         pageEntry.messaging.forEach((messagingEvent) => {
-          console.log({messagingEvent});
+          // console.log({messagingEvent});
           receiveApi.handleReceiveMessage(messagingEvent);
         });
       });

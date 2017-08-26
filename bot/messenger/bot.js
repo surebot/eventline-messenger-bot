@@ -1,9 +1,11 @@
 const Eventline = require('eventline');
+import send from './messenger-api-helpers/send'
 
 // ===== COMPONENTS ============================================================
 // const ReadReceipt = require('./component/read-receipt')
 // const FetchMessengerProfile = require('./component/fetch-messenger-profile')
 // const GettingStarted = require('./component/getting-started')
+// const PersistentMenu = require('./component/persistent-menu')
 // const Notifications = require('./component/notifications')
 
 const eventline = new Eventline.Eventline()
@@ -17,20 +19,30 @@ const eventline = new Eventline.Eventline()
 
 // echo all of the user's messages
 eventline.on([
-    {
-        'message.text': /.+/
-    }
+    // {
+    //     'message.text': /.+/
+    // }
 ])
 .then(event => {
     console.log(event)
     console.log("=======")
     return event
 })
-// .then(event => {
-//   messenger.send(event.sender.id, {
-//       text: event.message.text
-//   })
-// })
+.then(event => {
+  console.log('Sending message');
+
+  return send.sendMessage(event.sender.id,
+  [
+    {
+      "text": "test",
+    },
+    {
+      "text": event.message.text,
+    }
+  ]).map(result => {
+      return event
+  })
+})
 
 eventline.start()
 
