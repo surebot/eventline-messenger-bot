@@ -2,10 +2,10 @@
   "name": "eventline-messenger-bot",
   "version": "0.0.1",
   "description": "This example project creates a Facebook Messenger bot using Eventline",
-  "main": "bot.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node bot.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
