@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
+    "start": "npm run build && node dist/app.js"
   },
   "repository": {
     "type": "git",
@@ -28,7 +29,14 @@
   "dependencies": {
     "body-parser": "*",
     "eventline": "^0.2.6",
-    "express": "*",
-    "request": "^2.72.0"
+    "express": "^4.15.4",
+    "morgan": "^1.8.2",
+    "request": "^2.72.0",
+    "rx": "^4.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "rimraf": "^2.6.1"
   }
 }

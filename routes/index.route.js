@@ -8,6 +8,11 @@ const messengerRoutes = require('../bot/messenger/messenger.route');
 //--------------------------------------------------------------------------------
 
 /** GET /health-check - Check service health */
+router.get('', (req, res) =>
+  res.send('Chatbot up and running')
+);
+
+/** GET /health-check - Check service health */
 router.get('/health-check', (req, res) =>
   res.send('OK')
 );
