@@ -29,8 +29,9 @@ eventline.on([
     return event
 })
 .then(event => {
-  console.log('Sending message');
+  console.log('Sending message: ' + event.message.text);
 
+  // Simply echoing the text message back
   return send.sendMessage(event.sender.id,
   [
     {
