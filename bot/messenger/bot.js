@@ -1,7 +1,7 @@
-const Eventline = require('eventline');
+import { Eventline } from 'eventline'
 import send from './messenger-api-helpers/send'
 
-const eventline = new Eventline.Eventline()
+const eventline = new Eventline()
 
 // echo all of the user's messages
 eventline.on({
