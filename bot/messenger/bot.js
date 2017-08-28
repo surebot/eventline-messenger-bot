@@ -11,15 +11,9 @@ eventline.on({
   console.log('Sending message: ' + event.message.text);
 
   // Simply echoing the text message back
-  return send.sendMessage(event.sender.id,
-  [
-    {
-      "text": "test",
-    },
-    {
+  return send.sendMessage(event.sender.id, {
       "text": event.message.text,
-    }
-  ]).map(result => {
+  }).map(result => {
       return event
   })
 })
