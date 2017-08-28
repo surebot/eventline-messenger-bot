@@ -8,11 +8,6 @@ eventline.on({
     'message.text': /.+/
 })
 .then(event => {
-    console.log(event)
-    console.log("=======")
-    return event
-})
-.then(event => {
   console.log('Sending message: ' + event.message.text);
 
   // Simply echoing the text message back
