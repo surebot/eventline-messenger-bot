@@ -4,24 +4,17 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import logger from 'morgan';
 
-// ===== MESSENGER =============================================================
-// import ThreadSetup from './bot/messenger/messenger-api-helpers/thread-setup';
-
 // ===== INDEX ROUTE ================================================================
 const routes = require('./routes/index.route'); //The endpoints
-
-
 const app = express();
 
 /* =============================================
    =           Basic Configuration             =
    ============================================= */
 
-
 /* ----------  Parsers  ---------- */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-// app.use(cookieParser());
 
  /* ----------  Loggers &c  ---------- */
 
@@ -59,12 +52,5 @@ app.use(function(err, req, res) {
 var server = app.listen(process.env.PORT || 3000, function () {
   console.log("Listening on port %s", server.address().port);
 });
-
-/* ----------  Messenger setup  ---------- */
-
-// ThreadSetup.setGetStarted();
-// ThreadSetup.setPersistentMenu();
-// ThreadSetup.setGreetingText();
-
 
 module.exports = app; // eslint-disable-line
