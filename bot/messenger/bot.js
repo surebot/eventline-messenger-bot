@@ -11,8 +11,6 @@ eventline.on({
   // Simply echoing the text message back
   return send.sendMessage(event.sender.id, {
       "text": event.message.text,
-  }).map(result => {
-      return event
   })
 })
 

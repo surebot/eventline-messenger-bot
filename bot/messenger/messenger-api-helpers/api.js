@@ -11,9 +11,9 @@ import isEmpty from 'lodash/isEmpty';
 
 // ===== MODULES ===============================================================
 import request from 'request';
-import Rx from 'rx';
+import Rx from 'rxjs/Rx';
 
-const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN || "EAAKYWYFkx4oBAJl36mHGQ9pXJ9TZBb7DNaidF4y5ZAfRfXGMw9v784SF3uNYJCaMHAKBEieLD3OigEzSJZC2ZBdZAcwKnt6bPQVZAfSmXXgBxnsxmnZAZAgm8JmVl94WkWOF8uE7WUiX1cJVPoIVJx6TlreIeyfmOfJIpYKuArU12gZDZD" // text a hipster
+const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN || "EAAW6DM0210ABALjMT1ljDm3SsMoq1lWNlbAMR8S24U8G5ZBBYVMHEWBkXZCyJqgeG0mWK41WGa80uqZBFjDub4OUFNUj5gQgwbrZAfygrZBnQwZBbia3m7Jy1LnOLjShIt1vU7Mm9ok6ZBHMEDqXiYIszvOGbl4wMZBWqHU1ZAuKj0QZDZD" // text a hipster
 
 /**
  * Send messages in order to the Facebook graph API.
@@ -57,13 +57,13 @@ const callAPI = (endPoint, messageDataArray, queryParams = {}, retries = 5) => {
     }, (error, response, body) => {
 
       if (!error && response.statusCode === 200) {
-        observer.onNext(body)
-        observer.onCompleted()
+        observer.next(body)
+        observer.complete()
       } else {
-        console.log('Failed to send message: (' + response.statusCode + ') ' + JSON.stringify(body))
-        observer.onError(error)
+        observer.error(error)
       }
     })
+    
   }).flatMap(body => {
 
     if (!isEmpty(queue)) {
@@ -71,6 +71,7 @@ const callAPI = (endPoint, messageDataArray, queryParams = {}, retries = 5) => {
     }
 
     return Rx.Observable.just(body)
+
   }).catch( error => {
     return callAPI(endPoint, messageDataArray, queryParams, retries - 1)
   })
@@ -106,10 +107,10 @@ const fetchProfileAPI = (senderID) => {
      request(options, (error, response, body) => {
 
       if (!error && response.statusCode === 200) {
-        observer.onNext(body)
-        observer.onCompleted()
+        observer.next(body)
+        observer.completed()
       } else {
-        observer.onError(error)
+        observer.error(error)
       }
     })
   })
