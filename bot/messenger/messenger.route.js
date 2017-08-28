@@ -2,7 +2,7 @@
 import express from 'express';
 
 // ===== MESSENGER =============================================================
-import receiveApi from './messenger-api-helpers/receive';
+import bot from './bot';
 
 const router = express.Router();
 
@@ -32,8 +32,6 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
 
-  // dashbot.logIncoming(req.body);
-
   /*
     You must send back a status of 200(success) within 20 seconds
     to let us know you've successfully received the callback.
@@ -50,8 +48,6 @@ router.post('/', (req, res) => {
 
   const data = req.body;
 
-  //dashbot.logIncoming(data);
-
   // Make sure this is a page subscription
   switch(data.object) {
     case 'page':
@@ -60,14 +56,13 @@ router.post('/', (req, res) => {
       data.entry.forEach((pageEntry) => {
         // Iterate over each messaging event and handle accordingly
         pageEntry.messaging.forEach((messagingEvent) => {
-          // console.log({messagingEvent});
-          receiveApi.handleReceiveMessage(messagingEvent);
+          bot.route(messagingEvent);
         });
       });
       break
 
     case 'notification':
-      receiveApi.handleReceiveMessage(data.payload);
+      bot.route(data.payload);
       break;
   }
 });
